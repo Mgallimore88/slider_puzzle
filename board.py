@@ -10,15 +10,14 @@ class Board:
         for x in range(self.rows):
             for y in range(self.cols):
                 self.tiles[x + y * self.rows] = (x, y)
-    
+
     def print(self):
-        print ("-------")
+        print("-------")
         for n in range(self.rows):
             start_index = n * self.cols
             end_index = start_index + self.rows
-            print(self.tiles[start_index : end_index])
-        print ("-------")
-
+            print(self.tiles[start_index:end_index])
+        print("-------")
 
     def get_tile(self, row, col):
         tile_contents = self.tiles[row + col * self.rows]
