@@ -9,3 +9,19 @@ The list has a corresponding tuple key of the form
 (x,y), which just tells the constructor what dimension the 1d list should fit into,
 because for example a 20*30 or a 30*20 image will contain the same amount of pixels.
 That's what the key is there for I think.
+
+Setting a pixel from one image to be the same as a pixel in another image is as simple as
+
+first_image[x, y] = second_image[x, y]
+
+You need to make a constructor to index into the array like this:
+suppose width = 50, height = 100:
+for x in range(width):
+    for y in range(height):
+        index = x + y * width # this is optional - it is the index into the pixels
+        first_image[x, y] = second_image[x, y]
+
+
+
+
+the object being exchanged is the colour value of a pixel. Just remember to load_pixel on both images.
