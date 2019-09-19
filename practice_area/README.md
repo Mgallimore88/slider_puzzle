@@ -22,6 +22,6 @@ for x in range(width):
         first_image[x, y] = second_image[x, y]
 
 
-
-
 the object being exchanged is the colour value of a pixel. Just remember to load_pixel on both images.
+
+If you need to assign a different region of pixels from the second image into the first image, apply an offset to the x and y indexes of the second image.
