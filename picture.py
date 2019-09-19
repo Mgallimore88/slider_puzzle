@@ -21,19 +21,14 @@ class Picture:
         size(width, height)
 
     def make_tile(self, x_index = 0, y_index = 0):
+        test = PImage(100, 100, 'RGBA') 
+        test._channels = 4
         for x in range(100):
             for y in range(100):
-                index = x+ y*width
-                test = self.original._get_pixel[index]
-                self.tile._set_pixel(test.key, test.point)
-                
-            
-                
-                
-
-
+                index = x + y*100
+                pixel_colour = self.original._get_pixel((x,y))
+                test[x,y] = pixel_colour
         print(test)
-        print(test2)
 
 
 
