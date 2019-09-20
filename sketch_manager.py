@@ -8,16 +8,16 @@ class SketchManager:
         self.num_cols = 4
         self.num_rows = 4
         self.board = Board(self.num_cols, self.num_rows)
-        self.pic = Picture(self.num_cols, self.num_rows)
+        self.picture = Picture(self.num_cols, self.num_rows)
 
     def setup(self):
-        self.pic.create_canvas()
-        self.pic.make_tile()
+        self.picture.create_canvas()
+        self.picture.make_tiles()
+
         background(100)
-        
+
     def draw(self):
-        self.pic.draw()
-        pass
+        self.picture.draw(self.board.cells)
 
     def key_pressed(self, event):
         if event.key == "UP":
