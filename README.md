@@ -1,5 +1,7 @@
 2d slider puzzle 
 
+![](slidervideo.gif)
+
 up down left right to move the empty square.
 
 
