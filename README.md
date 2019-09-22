@@ -1,8 +1,10 @@
-2d slider puzzle 
+<h1>Slider Puzzle Game</h1>
 
 ![video](/slider_video.gif)
 
-up down left right to move the empty square.
+Use up down left right to move a tile.
+
+
 
 
 If you'd like to run this code, clone the repo and run 
