@@ -17,6 +17,7 @@ alternatively you can install the dependencies individually. The main ones are p
 `
 pip install p5 numpy
 `
+https://github.com/p5py/p5
 
 to run the code use:
 `
