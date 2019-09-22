@@ -13,7 +13,6 @@ class SketchManager:
     def setup(self):
         self.picture.create_canvas()
         self.picture.make_tiles()
-
         background(100)
 
     def draw(self):
