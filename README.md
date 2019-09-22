@@ -1,4 +1,4 @@
-<h1>Slider Puzzle Game</h1>
+<h1>Slider Puzzle Game using python and p5</h1>
 
 ![video](/slider_video.gif)
 
