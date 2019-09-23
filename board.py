@@ -1,3 +1,6 @@
+from random import randint
+
+
 class Board:
     def __init__(self, rows, cols):
         self.rows = rows
@@ -10,7 +13,6 @@ class Board:
         for x in range(self.rows):
             for y in range(self.cols):
                 self.cells[x + y * self.rows] = (x, y)
-        print(self.cells)
 
     def print(self):
         print("-------")
@@ -66,3 +68,9 @@ class Board:
             if empty_x == 0:
                 return
             self.swap(empty_x, empty_y, empty_x - 1, empty_y)
+
+    def scramble(self, num_of_moves):
+        dice = {1: "UP", 2: "DOWN", 3: "LEFT", 4: "RIGHT"}
+        for n in range(num_of_moves):
+            roll = randint(1, 4)
+            self.move(dice[roll])
