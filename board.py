@@ -10,6 +10,7 @@ class Board:
         for x in range(self.rows):
             for y in range(self.cols):
                 self.cells[x + y * self.rows] = (x, y)
+        print(self.cells)
 
     def print(self):
         print("-------")
