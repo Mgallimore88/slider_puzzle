@@ -1,18 +1,25 @@
-2d slider puzzle 
+<h1>Slider Puzzle Game using python and p5</h1>
 
-up down left right to move the empty square.
+![video](/slider_video.gif)
+
+Use up down left right to move a tile.
+
+
 
 
 If you'd like to run this code, clone the repo and run 
-
+`
 conda activate environment.yml
-
+`
 to install the relevant packages.
 
-alternatively you can install the dependencies individually. The main ones are
+alternatively you can install the dependencies individually. The main ones are p5 and numpy.
+`
+pip install p5 numpy
+`
+https://github.com/p5py/p5
 
-P5
-numpy
-Python 3
-
-(pip install p5)
+to run the code use:
+`
+python3 main.py
+`
