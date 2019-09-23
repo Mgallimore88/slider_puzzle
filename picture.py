@@ -45,16 +45,11 @@ class Picture:
         y_offset = y_idx * tile_height
 
         print("------initializing tiles--------")
-        print(f"x_location {x_idx}")
-        print(f"y_location {y_idx}")
-        print(f"x_offset {x_offset}")
-        print(f"y_offset {y_offset}")
-        print(f"parent image {self.original.width} x {self.original.height}")
-        print(f"window {self.width} x {self.height}")
+        print(f"tile {x_idx}, {y_idx}")
 
         for y in range(tile_height):
             for x in range(tile_width):
-                tile[x,y] = self.original[x + x_offset, y + y_offset]
+                tile[x, y] = self.original[x + x_offset, y + y_offset]
         return tile
 
     def make_tiles(self):
@@ -80,8 +75,6 @@ class Picture:
         for y in range(self.y_tiles):
             for x in range(self.x_tiles):
                 index = x + y * self.x_tiles
-                self.test_dictionary[(x,y)] = (x,y)
+                self.test_dictionary[(x, y)] = (x, y)
                 self.tile_dictionary[(x, y)] = self.tiles[index]
-        self.tile_dictionary[(-1, -1)] = self.tiles[-1] # black tile
-        print(self.tile_dictionary)
-        print(self.test_dictionary)
+        self.tile_dictionary[(-1, -1)] = self.tiles[-1]  # black tile
