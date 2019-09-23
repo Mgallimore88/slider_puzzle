@@ -3,7 +3,7 @@
 ![video](/slider_video.gif)
 
 Use up down left right to move a tile.
-
+Space bar to scramble the tiles.
 
 
 
