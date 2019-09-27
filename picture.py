@@ -4,42 +4,43 @@ from p5 import *
 
 
 class Picture:
-    def __init__(self, x_tiles, y_tiles):
+    def __init__(self, num_cols, num_rows):
         self.original = load_image("mantisshrimp.jpg")
         self.original.load_pixels()
-        self.x_tiles = x_tiles
-        self.y_tiles = y_tiles
+        self.num_cols = num_cols
+        self.num_rows = num_rows
         self.tiles = []
-        self.width = self.original.width - self.original.width % self.x_tiles
-        self.height = self.original.height - self.original.height % self.y_tiles
-        self.tile_width = int(self.width / self.x_tiles)
-        self.tile_height = int(self.height / self.y_tiles)
-        self.tile_dictionary = {}
+        self.width = self.original.width - self.original.width % self.num_cols
+        self.height = self.original.height - self.original.height % self.num_rows
+        self.tile_width = int(self.width / self.num_cols)
+        self.tile_height = int(self.height / self.num_rows)
+        # self.tile_dictionary = {}
         self.test_dictionary = {}
 
     def draw(self, cells):
         image(self.original, (0, 0))
 
-        for y in range(self.y_tiles):
-            for x in range(self.x_tiles):
-                # index = x + y * self.x_tiles
-                board_location = (x, y)
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                # index = x + y * self.num_cols
+                board_location = (row, col)
                 # tile = cells[index]
-                tile = cells[x][y]
+                tile = cells[row][col]
                 self.display_tile(board_location, tile)
 
     def display_tile(self, board_location, tile):
-        x_pos = self.tile_width * board_location[0]
-        y_pos = self.tile_height * board_location[1]
+        x_pos = self.tile_width * board_location[1]
+        y_pos = self.tile_height * board_location[0]
         if tile == None:
-            image(self.tile_dictionary[-1, -1], (x_pos, y_pos))
+            image(self.tiles[0][0], (x_pos, y_pos))
         else:
-            image(self.tile_dictionary[tile], (x_pos, y_pos))
+            row, col = tile
+            image(self.tiles[row][col], (x_pos, y_pos))
 
     def create_canvas(self):
         size(self.width, self.height)
 
-    def new_tile(self, x_idx, y_idx, tile_width, tile_height):
+    def new_tile(self, y_idx, x_idx, tile_width, tile_height):
         tile = PImage(tile_width, tile_height)
         tile.load_pixels()
         x_offset = x_idx * tile_width
@@ -54,14 +55,15 @@ class Picture:
         return tile
 
     def make_tiles(self):
-        for y in range(self.y_tiles):
-            for x in range(self.x_tiles):
-                # get a tile for each position on the grid
-                new_tile = self.new_tile(x, y, self.tile_width, self.tile_height)
-                self.tiles.append(new_tile)
+        for row in range(self.num_rows):
+            self.tiles.append([self.new_tile(row, col, self.tile_width, self.tile_height) for col in range(self.num_cols)])
+            # for x in range(self.num_cols):
+                # # get a tile for each position on the grid
+                # new_tile = self.new_tile(x, y, self.tile_width, self.tile_height)
+                # self.tiles.append(new_tile)
         # put a black tile at the end of the list.
-        self.tiles[0] = self.empty_tile()
-        self.make_tile_dictionary()
+        self.tiles[0][0] = self.empty_tile()
+        # self.make_tile_dictionary()
         return self.tiles
 
     def empty_tile(self):
@@ -73,9 +75,9 @@ class Picture:
         return empty_tile
 
     def make_tile_dictionary(self):
-        for y in range(self.y_tiles):
-            for x in range(self.x_tiles):
-                index = x + y * self.x_tiles
+        for y in range(self.num_rows):
+            for x in range(self.num_cols):
+                index = x + y * self.num_cols
                 self.test_dictionary[(x, y)] = (x, y)
                 self.tile_dictionary[(x, y)] = self.tiles[index]
         self.tile_dictionary[(-1, -1)] = self.tiles[0]  # black tile
