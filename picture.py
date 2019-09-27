@@ -19,7 +19,6 @@ class Picture:
 
     def draw(self, cells):
         image(self.original, (0, 0))
-        print(cells)
 
         for y in range(self.y_tiles):
             for x in range(self.x_tiles):
@@ -61,7 +60,7 @@ class Picture:
                 new_tile = self.new_tile(x, y, self.tile_width, self.tile_height)
                 self.tiles.append(new_tile)
         # put a black tile at the end of the list.
-        self.tiles.append(self.empty_tile())
+        self.tiles[0] = self.empty_tile()
         self.make_tile_dictionary()
         return self.tiles
 
@@ -79,4 +78,4 @@ class Picture:
                 index = x + y * self.x_tiles
                 self.test_dictionary[(x, y)] = (x, y)
                 self.tile_dictionary[(x, y)] = self.tiles[index]
-        self.tile_dictionary[(-1, -1)] = self.tiles[-1]  # black tile
+        self.tile_dictionary[(-1, -1)] = self.tiles[0]  # black tile
