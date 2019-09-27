@@ -19,12 +19,14 @@ class Picture:
 
     def draw(self, cells):
         image(self.original, (0, 0))
+        print(cells)
 
         for y in range(self.y_tiles):
             for x in range(self.x_tiles):
-                index = x + y * self.x_tiles
+                # index = x + y * self.x_tiles
                 board_location = (x, y)
-                tile = cells[index]
+                # tile = cells[index]
+                tile = cells[x][y]
                 self.display_tile(board_location, tile)
 
     def display_tile(self, board_location, tile):

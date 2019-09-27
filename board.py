@@ -11,24 +11,21 @@ class Board:
         self.set_empty_cell(0, 0)
 
     def populate(self):
-        for x in range(self.num_rows):
-            for y in range(self.num_cols):
-                self.cells[x + y * self.num_rows] = (x, y)
+        for row in range(self.num_rows):
+            self.cells.append([(row, col) for col in range(self.num_cols)])
 
     def print(self):
         print("-------")
         for n in range(self.num_rows):
-            start_index = n * self.num_cols
-            end_index = start_index + self.num_rows
-            print(self.cells[start_index:end_index])
+            print(self.cells[n])
         print("-------")
 
     def get_cell(self, row, col):
-        cell_contents = self.cells[row + col * self.num_rows]
+        cell_contents = self.cells[row][col]
         return cell_contents
 
     def set_cell(self, row, col, cell_contents):
-        self.cells[row + col * self.num_rows] = cell_contents
+        self.cells[row][col] = cell_contents
 
     def set_empty_cell(self, row, col):
         self.set_cell(row, col, None)
