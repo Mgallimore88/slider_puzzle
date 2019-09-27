@@ -14,17 +14,13 @@ class Picture:
         self.height = self.original.height - self.original.height % self.num_rows
         self.tile_width = int(self.width / self.num_cols)
         self.tile_height = int(self.height / self.num_rows)
-        # self.tile_dictionary = {}
-        self.test_dictionary = {}
 
     def draw(self, cells):
         image(self.original, (0, 0))
 
         for row in range(self.num_rows):
             for col in range(self.num_cols):
-                # index = x + y * self.num_cols
                 board_location = (row, col)
-                # tile = cells[index]
                 tile = cells[row][col]
                 self.display_tile(board_location, tile)
 
@@ -55,15 +51,11 @@ class Picture:
         return tile
 
     def make_tiles(self):
+        # get a tile for each position on the grid
         for row in range(self.num_rows):
             self.tiles.append([self.new_tile(row, col, self.tile_width, self.tile_height) for col in range(self.num_cols)])
-            # for x in range(self.num_cols):
-                # # get a tile for each position on the grid
-                # new_tile = self.new_tile(x, y, self.tile_width, self.tile_height)
-                # self.tiles.append(new_tile)
-        # put a black tile at the end of the list.
+        # put a black tile in the first position in the list.
         self.tiles[0][0] = self.empty_tile()
-        # self.make_tile_dictionary()
         return self.tiles
 
     def empty_tile(self):
@@ -73,11 +65,3 @@ class Picture:
             for y in range(self.tile_height):
                 empty_tile[x, y] = 0
         return empty_tile
-
-    def make_tile_dictionary(self):
-        for y in range(self.num_rows):
-            for x in range(self.num_cols):
-                index = x + y * self.num_cols
-                self.test_dictionary[(x, y)] = (x, y)
-                self.tile_dictionary[(x, y)] = self.tiles[index]
-        self.tile_dictionary[(-1, -1)] = self.tiles[0]  # black tile
