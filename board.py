@@ -3,38 +3,39 @@ from random import randint
 
 class Board:
     def __init__(self, rows, cols):
-        self.rows = rows
-        self.cols = cols
-        self.cells = [0] * rows * cols
+        self.num_rows = rows
+        self.num_cols = cols
+        # self.cells = [0] * rows * cols
+        self.cells = []
         self.populate()
         self.set_empty_cell(0, 0)
 
     def populate(self):
-        for x in range(self.rows):
-            for y in range(self.cols):
-                self.cells[x + y * self.rows] = (x, y)
+        for x in range(self.num_rows):
+            for y in range(self.num_cols):
+                self.cells[x + y * self.num_rows] = (x, y)
 
     def print(self):
         print("-------")
-        for n in range(self.rows):
-            start_index = n * self.cols
-            end_index = start_index + self.rows
+        for n in range(self.num_rows):
+            start_index = n * self.num_cols
+            end_index = start_index + self.num_rows
             print(self.cells[start_index:end_index])
         print("-------")
 
     def get_cell(self, row, col):
-        cell_contents = self.cells[row + col * self.rows]
+        cell_contents = self.cells[row + col * self.num_rows]
         return cell_contents
 
     def set_cell(self, row, col, cell_contents):
-        self.cells[row + col * self.rows] = cell_contents
+        self.cells[row + col * self.num_rows] = cell_contents
 
     def set_empty_cell(self, row, col):
         self.set_cell(row, col, None)
 
     def get_empty_cell(self):
-        for x in range(self.rows):
-            for y in range(self.cols):
+        for x in range(self.num_rows):
+            for y in range(self.num_cols):
                 if self.get_cell(x, y) == None:
                     return (x, y)
 
@@ -50,7 +51,7 @@ class Board:
         empty_y = empty_cell[1]
 
         if direction == "UP":
-            if empty_y == self.rows - 1:
+            if empty_y == self.num_rows - 1:
                 return
             self.swap(empty_x, empty_y, empty_x, empty_y + 1)
 
@@ -60,7 +61,7 @@ class Board:
             self.swap(empty_x, empty_y, empty_x, empty_y - 1)
 
         elif direction == "LEFT":
-            if empty_x == self.cols - 1:
+            if empty_x == self.num_cols - 1:
                 return
             self.swap(empty_x, empty_y, empty_x + 1, empty_y)
 
