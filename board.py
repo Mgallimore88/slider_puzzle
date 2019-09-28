@@ -46,29 +46,33 @@ class Board:
         empty_cell = self.get_empty_cell()
         empty_row = empty_cell[0]
         empty_col = empty_cell[1]
+        if not direction in ["UP", "DOWN", "LEFT", "RIGHT"]: return False
 
         if direction == "UP":
             if empty_row == self.num_rows - 1:
-                return
+                return False
             self.swap(empty_col, empty_row, empty_col, empty_row + 1)
 
         elif direction == "DOWN":
             if empty_row == 0:
-                return
+                return False
             self.swap(empty_col, empty_row, empty_col, empty_row - 1)
 
         elif direction == "LEFT":
             if empty_col == self.num_cols - 1:
-                return
+                return False
             self.swap(empty_col, empty_row, empty_col + 1, empty_row)
 
         elif direction == "RIGHT":
             if empty_col == 0:
-                return
+                return False
             self.swap(empty_col, empty_row, empty_col - 1, empty_row)
+        return True
 
     def scramble(self, num_of_moves):
         dice = {1: "UP", 2: "DOWN", 3: "LEFT", 4: "RIGHT"}
-        for n in range(num_of_moves):
+        move_count = 0
+        while move_count < num_of_moves:
             roll = randint(1, 4)
-            self.move(dice[roll])
+            if self.move(dice[roll]):
+                move_count += 1
