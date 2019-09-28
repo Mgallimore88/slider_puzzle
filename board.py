@@ -31,16 +31,16 @@ class Board:
         self.set_cell(row, col, None)
 
     def get_empty_cell(self):
-        for x in range(self.num_rows):
-            for y in range(self.num_cols):
-                if self.get_cell(x, y) == None:
-                    return (x, y)
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                if self.get_cell(row, col) == None:
+                    return (row, col)
 
-    def swap(self, x1, y1, x2, y2):
-        cell_1 = self.get_cell(x1, y1)
-        cell_2 = self.get_cell(x2, y2)
-        self.set_cell(x1, y1, cell_2)
-        self.set_cell(x2, y2, cell_1)
+    def swap(self, col1, row1, col2, row2):
+        cell_1 = self.get_cell(row1, col1)
+        cell_2 = self.get_cell(row2, col2)
+        self.set_cell(row1, col1, cell_2)
+        self.set_cell(row2, col2, cell_1)
 
     def move(self, direction):
         empty_cell = self.get_empty_cell()
