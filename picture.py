@@ -16,7 +16,7 @@ class Picture:
         self.tile_height = int(self.height / self.num_rows)
 
     def draw(self, cells):
-        image(self.original, (0, 0))
+        # image(self.original, (0, 0))
 
         for row in range(self.num_rows):
             for col in range(self.num_cols):
