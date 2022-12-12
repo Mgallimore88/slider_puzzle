@@ -9,7 +9,12 @@ Space bar to scramble the tiles.
 
 If you'd like to run this code, clone the repo and run 
 `
-conda activate environment.yml
+conda env create -f environment.yml 
+conda activate p5
+
+If you already have an environment named p5, extend this with --name slider-puzzle
+
+conda activate slider-puzzle
 `
 to install the relevant packages.
 
